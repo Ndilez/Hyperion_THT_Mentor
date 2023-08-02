@@ -1,0 +1,49 @@
+Section A (Option 1 Python Task):
+The Student provided python code that has class and in it a function groupAnagrams that takes a list of list of strings as argument and returns a list of anagrams.The attempt to solve the question good approach and quiet easy to follow.The solution uses a dictionary to store the string (Line 5),which is a more efficient way as there will be no need for iterating through the dictionary ,which would make the program run slower,However the program ,does not implement error handling and user input validation.The code also has no comments which are needed explain to other developers what the code does.
+The code uses the sorted function algorithm,which is a fast sorting algortim to sort each string(Line 9)
+The code also uses the in operator to check if the word is in the dictionary already .This a  very correct and efficient way of checking if the string is already in the dictionary
+Even though the solution provided is quite goog there still can be some improvemnts on the code.We List possible improvements on this code for even better perfomance and efficiency:::1)The code could have used generics instead of specific type to allow for code reusablity especially when the code sniipet will be in larger projects :::2) Another improvement would be usimg Trees as a data structure other than the dictionories.This would be very much useful in scalabilty as a tree allows for faster access in application that require large number of data to be processed in time-critical appllications.
+
+Below We have included an improved and correct version of the code with all user input validation , error handling and comments
+
+class Solution:
+
+  def groupAnagrams(self, strs):
+    
+
+    # Validate the input.
+    if not strs:
+      raise ValueError("The input list cannot be empty.")
+
+    # Initialize the result.
+    result = {}
+
+    # Iterate over the input strings.
+    for i in strs:
+
+      # Sort the letters of the string.
+      x = "".join(sorted(i))
+
+      # Check if the sorted string is already in the result.
+      if x in result:
+        result[x].append(i)
+      else:
+        result[x] = [i]
+
+    # Return the result.
+    return list(result.values())
+
+
+if __name__ == "__main__":
+
+  # Get the input from the user.
+  strs = input("Enter a list of strings: ").split()
+
+  # Create the solution object.
+  solution = Solution()
+
+  # Group the anagrams together.
+  result = solution.groupAnagrams(strs)
+
+  # Print the result.
+  print(result)
